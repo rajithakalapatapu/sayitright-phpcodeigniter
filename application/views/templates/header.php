@@ -10,8 +10,6 @@
 </head>
 `
 <body id="wrapper">
-
-
 <nav>
     <div class="nav_left">
         <a href="<?php echo base_url(); ?>index.php/home">
