@@ -8,7 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Rajdhani' rel='stylesheet'>
     <title><?php echo $title ;?></title>
 </head>
-`
+
 <body id="wrapper">
 <nav>
     <div class="nav_left">

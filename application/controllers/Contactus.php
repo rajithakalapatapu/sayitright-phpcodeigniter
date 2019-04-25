@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Contactus extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('contactus_model');
+        $this->load->helper('url_helper');
+    }
+
     public function index()
     {
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
@@ -53,7 +60,20 @@ class Contactus extends CI_Controller
             $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
             $this->load->view('templates/footer', $data);
         } else {
-            $data['status'] = 'Message sent successfully!';
+
+            $status = $this->contactus_model->store_message(
+                $this->input->post('fname'),
+                $this->input->post('lname'),
+                $this->input->post('phone'),
+                $this->input->post('Message')
+            );
+
+            if ($status) {
+                $data['status'] = 'Message sent successfully!';
+            } else {
+                $data['status'] = 'Failed to send message - please try again';
+
+            }
             $this->load->view('templates/header', $data);
             $this->load->view('pages/' . strtolower(get_class($this)) . '.php', $data);
             $this->load->view('templates/footer', $data);
