@@ -5,15 +5,15 @@
         <h2 id="breadcrumbh4">LOGIN</h2>
     </div>
     <div class="login margin10">
-        <form method="POST" action="" onsubmit="return submit_login_form();">
+        <?php echo form_open('login'); ?>
             <div class="loginform">
                 <div align="left">
                     <input type="text" id="email" name="email" placeholder="Enter email" required>
-<!--                    <span id="emailErr" class="error">*--><?php //echo $emailErr; ?><!--</span>-->
+                    <span id="fnameErr" class="error"> *  <?php echo form_error('email'); ?> </span>
                 </div>
                 <div align="left">
                     <input type="password" id="password" name="password" placeholder="Enter password" required>
-<!--                    <span id="passwordErr" class="error">*--><?php //echo $passwordErr; ?><!--</span>-->
+                    <span id="fnameErr" class="error"> *  <?php echo form_error('password'); ?> </span>
                 </div>
                 <div align="right">
                     <button class="loginsend" id="button">SEND</button>
