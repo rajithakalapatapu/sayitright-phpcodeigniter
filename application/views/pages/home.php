@@ -32,7 +32,7 @@
             <h6 id="footerh6"> We won't send any kind of spam </h6>
         </div>
         <div class="footerright">
-            <form method="POST" action="" onsubmit="return submit_subscribe_form()">
+            <?php echo form_open('home'); ?>
                 <input type="email" name="subscribe_email" id="footertextarea"
                        placeholder="Enter email address" required></input>
                 <!--            <span id="subscribe_emailErr" class="error"> * -->
