@@ -7,6 +7,8 @@ class Login extends CI_Controller
     {
         parent::__construct();
         $this->load->model('individual_model');
+        $this->load->model('event_model');
+        $this->load->model('business_model');
         $this->load->helper('url_helper');
     }
 
@@ -48,13 +50,6 @@ class Login extends CI_Controller
         $this->load_page($data);
     }
 
-    private function load_page($data)
-    {
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
-        $this->load->view('templates/footer', $data);
-    }
-
     private function validate_user($email, $password)
     {
         $this->load->library('session');
@@ -64,5 +59,23 @@ class Login extends CI_Controller
             return $valid_indidivual;
         }
 
+        $valid_event_user = $this->event_model->validate_login($email, $password);
+        if ($valid_event_user) {
+            return $valid_event_user;
+        }
+
+        $valid_business_user = $this->business_model->validate_login($email, $password);
+        if ($valid_business_user) {
+            return $valid_business_user;
+        }
+
+        return FALSE;
+    }
+
+    private function load_page($data)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
+        $this->load->view('templates/footer', $data);
     }
 }
