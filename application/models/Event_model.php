@@ -25,7 +25,7 @@ class Event_model extends CI_Model
 
         $current_user_events = array();
 
-        foreach($result->result() as $row) {
+        foreach ($result->result() as $row) {
             $current_user_event = array(
                 'event_type' => $row->event_type,
                 'event_name' => $row->event_name,
@@ -57,5 +57,14 @@ class Event_model extends CI_Model
         }
 
         return false;
+    }
+
+    public function delete($event_id)
+    {
+        $stmt = "delete from events where event_id = '%s';";
+        $sql = sprintf($stmt, $event_id);
+
+        $this->db->query($sql);
+        return $this->db->affected_rows();
     }
 }

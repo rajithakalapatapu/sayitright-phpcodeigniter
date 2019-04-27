@@ -31,12 +31,22 @@ class Eventlogin extends CI_Controller
             );
 
             if ($affected_rows) {
-                // Actually show that we successfully created the event!
+                //TODO: Actually show that we successfully created the event!
             }
 
 
         }
 
+        $this->load_page($data);
+    }
+
+    public function delete($event_id)
+    {
+        $affected_row = $this->event_model->delete($event_id);
+        if ($affected_row) {
+            //TODO: show success message
+        }
+        $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
         $this->load_page($data);
     }
 

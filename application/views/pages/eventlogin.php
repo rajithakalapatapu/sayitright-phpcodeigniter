@@ -1,6 +1,6 @@
 <script>
     function delete_event(event_id) {
-        window.location.href = "delete_event.php?event_id=".concat(event_id);
+        window.location.href = "eventlogin/delete/".concat(event_id);
     }
 
     function show_event_add_form() {
