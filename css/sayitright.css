@@ -300,7 +300,8 @@ h5 {
     color: white;
 }
 
-.content {}
+.content {
+}
 
 .breadcrumb {
     position: relative;
@@ -344,7 +345,7 @@ h5 {
     max-height: 100%;
 }
 
-.aboutustext>h2 {
+.aboutustext > h2 {
     font-family: Verdana, Arial, sans-serif;
 }
 
@@ -403,12 +404,12 @@ h5 {
     display: none;
 }
 
-.contactusleft>div {
+.contactusleft > div {
     margin: 10px;
     padding-right: 20px;
 }
 
-.contactusright>div {
+.contactusright > div {
     margin: 10px;
 }
 
@@ -434,16 +435,15 @@ textarea {
     font-family: Verdana, Arial, sans-serif;
 }
 
-.buyfromustabledata>img {
+.buyfromustabledata > img {
     margin: auto 25% auto 25%;
 }
 
-.buyfromustabledata>img,
+.buyfromustabledata > img,
 #mymodelimg {
     width: 180px;
     height: 180px;
 }
-
 
 
 #footerh2 {
@@ -506,20 +506,20 @@ textarea {
     left: -170px;
 }
 
-.homepageright>h1 {
+.homepageright > h1 {
     line-height: 200%;
     color: white;
     font-family: Georgia, serif;
     text-align: left;
 }
 
-.homepageright>h6 {
+.homepageright > h6 {
     color: white;
     font-family: Georgia, serif;
     text-align: left;
 }
 
-.conferenceslist>h1 {
+.conferenceslist > h1 {
     line-height: 200%;
     color: black;
     font-family: Verdana, sans-serif;
@@ -543,7 +543,7 @@ textarea {
     font-family: Verdana, Arial, sans-serif;
 }
 
-.cardgrid>div>*,
+.cardgrid > div > *,
 .individuallogintext {
     font-family: Verdana, Arial, sans-serif;
 }
@@ -639,7 +639,7 @@ textarea {
     line-height: 1.5em;
 }
 
-.conferenceslist>h2 {
+.conferenceslist > h2 {
     color: black;
     position: relative;
     top: 30%;
@@ -681,8 +681,8 @@ textarea {
     justify-content: center;
 }
 
-.loginform>div,
-.loginform>div>* {
+.loginform > div,
+.loginform > div > * {
     padding: 10px;
 }
 
@@ -700,7 +700,7 @@ textarea {
     width: 80%;
 }
 
-.signupgrid>div>p {
+.signupgrid > div > p {
     margin: 10px;
 }
 
@@ -713,8 +713,8 @@ textarea {
     font-family: Verdana, Arial, sans-serif;
 }
 
-.signupform>div>h2,
-.signupform>div>h4 {
+.signupform > div > h2,
+.signupform > div > h4 {
     color: black;
     font-family: Verdana, Arial, sans-serif;
 }
@@ -751,7 +751,7 @@ textarea {
     /* Black w/ opacity */
 }
 
-.modal-content>img {
+.modal-content > img {
     width: 100px;
     height: 100px;
     float: left;
@@ -768,25 +768,25 @@ textarea {
 }
 
 
-.modal-content>* {
+.modal-content > * {
     padding: 5px;
 }
 
-.modal_title>h4 {
+.modal_title > h4 {
     float: left;
     color: black;
 }
 
-.modal-content-right>h4 {
+.modal-content-right > h4 {
     color: black;
 }
 
-.modal-content-right>h5 {
+.modal-content-right > h5 {
     color: red;
     text-align: left;
 }
 
-.modal_title>close {
+.modal_title > close {
     float: right;
 }
 
@@ -851,17 +851,17 @@ textarea {
     border: none;
 }
 
-.individualsignupform>h3,
-.eventsignupform>h3,
-.businesssignupform>h3,
-.radiobuttons>h5 {
+.individualsignupform > h3,
+.eventsignupform > h3,
+.businesssignupform > h3,
+.radiobuttons > h5 {
     color: black;
     text-align: center;
 }
 
-.individualsignupform>div,
-.eventsignupform>div,
-.businesssignupform>div {
+.individualsignupform > div,
+.eventsignupform > div,
+.businesssignupform > div {
     padding: 4px;
 }
 
@@ -869,12 +869,12 @@ textarea {
     text-align: center;
 }
 
-.radiobuttons>* {
+.radiobuttons > * {
     display: inline-block;
 }
 
-.radiobuttons>h6,
-.radiobuttons>input {
+.radiobuttons > h6,
+.radiobuttons > input {
     display: inline-block;
     text-align: center;
 }
@@ -934,7 +934,7 @@ textarea {
     padding: 0 5% 0 0;
 }
 
-.settings>* {
+.settings > * {
     font-family: Verdana, Arial, sans-serif;
 }
 
@@ -948,42 +948,43 @@ textarea {
     color: black;
 }
 
-.shipping_left>*,
-.shipping_one_line>*,
-.settings_right>h3,
-.settings_right>p {
+.shipping_left > *,
+.shipping_one_line > *,
+.settings_right > h3,
+.settings_right > p {
     padding: 5px;
     margin: 2px;
     text-align: left;
 }
-.settings_form>div,
-.settings_form>p{
+
+.settings_form > div,
+.settings_form > p {
     text-align: left;
     padding: 5px;
     margin: 2px;
 }
 
-.settings_left>div,
-.settings_left>div>* {
+.settings_left > div,
+.settings_left > div > * {
     display: block;
 }
 
-.shipping_right>* {
+.shipping_right > * {
     text-align: center;
 }
 
-.shipping_one_line>input,
-.shipping_one_line>select,
-.shipping_one_line>div {
+.shipping_one_line > input,
+.shipping_one_line > select,
+.shipping_one_line > div {
     display: inline;
 }
 
-.shipping_left>input,
-.shipping_left>button {
+.shipping_left > input,
+.shipping_left > button {
     display: block;
 }
 
-.shipping_right>h6 {
+.shipping_right > h6 {
     color: black;
 }
 
@@ -995,12 +996,12 @@ textarea {
     grid-template-columns: 40% 20% 20% 20%;
 }
 
-.shipping_table_data>img {
+.shipping_table_data > img {
     width: 70px;
     height: 70px;
 }
 
-.shipping_table_data>h5 {
+.shipping_table_data > h5 {
     color: black;
 }
 
