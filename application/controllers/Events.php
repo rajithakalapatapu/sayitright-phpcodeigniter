@@ -20,7 +20,22 @@ class Events extends CI_Controller
     public function index()
     {
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
+
+        if (!$this->any_valid_user_logged_in()) {
+            $this->go_to_login_page($data);
+        }
+
         $this->load_page($data);
+    }
+
+    private function load_page($data)
+    {
+        $user_id = $this->session->user_id;
+        $data['all_events'] = $this->events_model->get_all_events();
+
+        $this->load->view('templates/loggedinheader', $data);
+        $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
+        $this->load->view('templates/footer', $data);
     }
 
     public function confirm_event_participation($event_id, $user_id)
@@ -34,14 +49,24 @@ class Events extends CI_Controller
 
     }
 
-    private function load_page($data)
+    private function any_valid_user_logged_in()
     {
-        $user_id = $this->session->user_id;
-        $data['all_events'] = $this->events_model->get_all_events();
+        if ($this->session->user_type == "event" && $this->session->user_id != 0) {
+            return true;
+        } else if ($this->session->user_type == "business" && $this->session->user_id != 0) {
+            return true;
+        } else if ($this->session->user_type == "individual" && $this->session->user_id != 0) {
+            return true;
+        }
+        return false;
+    }
 
-        $this->load->view('templates/loggedinheader', $data);
-        $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
+    private function go_to_login_page($data)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/login');
         $this->load->view('templates/footer', $data);
     }
+
 
 }

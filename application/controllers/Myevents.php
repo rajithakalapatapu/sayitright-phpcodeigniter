@@ -20,6 +20,11 @@ class Myevents extends CI_Controller
     public function index()
     {
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
+
+        if (!$this->any_valid_user_logged_in()) {
+            $this->go_to_login_page($data);
+        }
+
         $this->load_page($data);
     }
 
@@ -41,6 +46,25 @@ class Myevents extends CI_Controller
 
         $this->load->view('templates/loggedinheader', $data);
         $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
+        $this->load->view('templates/footer', $data);
+    }
+
+    private function any_valid_user_logged_in()
+    {
+        if ($this->session->user_type == "event" && $this->session->user_id != 0) {
+            return true;
+        } else if ($this->session->user_type == "business" && $this->session->user_id != 0) {
+            return true;
+        } else if ($this->session->user_type == "individual" && $this->session->user_id != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private function go_to_login_page($data)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/login');
         $this->load->view('templates/footer', $data);
     }
 
