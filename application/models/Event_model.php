@@ -7,6 +7,15 @@ class Event_model extends CI_Model
         $this->load->database();
     }
 
+    public function create_event($event_name, $event_datetime, $event_type, $event_location, $event_created_by)
+    {
+        $stmt = "insert into events (`event_name`, `event_datetime`, `event_type`, `event_location`, `event_created_by`) values ('%s', '%s', '%s', '%s', '%s');";
+        $sql = sprintf($stmt, $event_name, $event_datetime, $event_type, $event_location, $event_created_by);
+
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
+
     public function get_current_user_events($user_id)
     {
         $stmt = "select * from events where event_created_by = '%s';";

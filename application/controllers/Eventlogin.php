@@ -7,7 +7,11 @@ class Eventlogin extends CI_Controller
     {
         parent::__construct();
         $this->load->library('session');
+        $this->load->library('form_validation');
+
         $this->load->model('event_model');
+
+        $this->load->helper('form');
         $this->load->helper('url');
         $this->load->helper('url_helper');
     }
@@ -16,7 +20,73 @@ class Eventlogin extends CI_Controller
     {
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
 
+        if ($this->validate_new_event_entry()) {
+            // now create the event
+            $affected_rows = $this->event_model->create_event(
+                $this->input->post('event_name'),
+                $this->input->post('event_date') . " " . $this->input->post('event_time'),
+                $this->input->post('event_type'),
+                $this->input->post('event_location'),
+                $this->session->user_id
+            );
+
+            if ($affected_rows) {
+                // Actually show that we successfully created the event!
+            }
+
+
+        }
+
         $this->load_page($data);
+    }
+
+    private function validate_new_event_entry()
+    {
+        $config = array(
+            array(
+                'field' => 'event_name',
+                'label' => 'Name',
+                'rules' => 'trim|required|regex_match[/^[A-Za-z ]*$/]',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid event name.',
+                ),
+            ),
+            array(
+                'field' => 'event_date',
+                'label' => 'Event Date',
+                'rules' => 'trim|required',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid event date.',
+                ),
+            ),
+            array(
+                'field' => 'event_time',
+                'label' => 'Event Timee',
+                'rules' => 'trim|required',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid event time.',
+                ),
+            ),
+            array(
+                'field' => 'event_type',
+                'label' => 'Event Type',
+                'rules' => 'trim|required',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid event type.',
+                ),
+            ),
+            array(
+                'field' => 'event_location',
+                'label' => 'Event Location',
+                'rules' => 'trim|required|regex_match[/^[A-Za-z ]*$/]',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid event location.',
+                ),
+            )
+        );
+
+        $this->form_validation->set_rules($config);
+        return $this->form_validation->run();
     }
 
     private function load_page($data)
