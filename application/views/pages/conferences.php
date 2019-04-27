@@ -1,3 +1,8 @@
+<script>
+    function confirm_conference(conference_id, individual_id) {
+        window.location.href = "conferences/confirm_conference_participation/" + conference_id + "/" + individual_id;
+    }
+</script>
 
 <div class="content">
     <div class="conferenceslist" id="wrapper">

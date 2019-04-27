@@ -7,6 +7,15 @@ class Conferences_model extends CI_Model
         $this->load->database();
     }
 
+    public function confirm_conference_participation($conference_id, $user_id)
+    {
+        $stmt = "insert into my_conferences values ('%s', '%s');";
+        $sql = sprintf($stmt, $user_id, $conference_id);
+
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
+
     public function get_all_conferences()
     {
         $stmt = "select * from conferences;";

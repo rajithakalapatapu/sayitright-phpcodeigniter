@@ -23,6 +23,17 @@ class Conferences extends CI_Controller
         $this->load_page($data);
     }
 
+    public function confirm_conference_participation($conference_id, $user_id)
+    {
+        $affected_row = $this->conferences_model->confirm_conference_participation($conference_id, $user_id);
+        if ($affected_row) {
+            //TODO: show success message
+        }
+        $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
+        $this->load_page($data);
+
+    }
+
     private function load_page($data)
     {
         $user_id = $this->session->user_id;
