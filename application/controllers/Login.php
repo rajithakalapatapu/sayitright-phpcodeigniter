@@ -7,7 +7,7 @@ class Login extends CI_Controller
     {
         parent::__construct();
         $this->load->model('individual_model');
-        $this->load->model('event_model');
+        $this->load->model('events_model');
         $this->load->model('business_model');
         $this->load->helper('url_helper');
     }
@@ -59,7 +59,7 @@ class Login extends CI_Controller
             return $valid_indidivual;
         }
 
-        $valid_event_user = $this->event_model->validate_login($email, $password);
+        $valid_event_user = $this->events_model->validate_login($email, $password);
         if ($valid_event_user) {
             return $valid_event_user;
         }

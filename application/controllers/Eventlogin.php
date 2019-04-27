@@ -9,7 +9,7 @@ class Eventlogin extends CI_Controller
         $this->load->library('session');
         $this->load->library('form_validation');
 
-        $this->load->model('event_model');
+        $this->load->model('events_model');
 
         $this->load->helper('form');
         $this->load->helper('url');
@@ -22,7 +22,7 @@ class Eventlogin extends CI_Controller
 
         if ($this->validate_new_event_entry()) {
             // now create the event
-            $affected_rows = $this->event_model->create_event(
+            $affected_rows = $this->events_model->create_event(
                 $this->input->post('event_name'),
                 $this->input->post('event_date') . " " . $this->input->post('event_time'),
                 $this->input->post('event_type'),
@@ -42,7 +42,7 @@ class Eventlogin extends CI_Controller
 
     public function delete($event_id)
     {
-        $affected_row = $this->event_model->delete($event_id);
+        $affected_row = $this->events_model->delete($event_id);
         if ($affected_row) {
             //TODO: show success message
         }
@@ -102,7 +102,7 @@ class Eventlogin extends CI_Controller
     private function load_page($data)
     {
         $user_id = $this->session->user_id;
-        $data['current_user_events'] = $this->event_model->get_current_user_events($user_id);
+        $data['current_user_events'] = $this->events_model->get_current_user_events($user_id);
 
         $this->load->view('templates/loggedinheader', $data);
         $this->load->view('pages/' . strtolower(get_class($this)) . '.php');

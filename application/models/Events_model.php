@@ -1,6 +1,6 @@
 <?php
 
-class Event_model extends CI_Model
+class Events_model extends CI_Model
 {
     public function __construct()
     {
@@ -67,4 +67,39 @@ class Event_model extends CI_Model
         $this->db->query($sql);
         return $this->db->affected_rows();
     }
+
+    public function get_all_events()
+    {
+        $stmt = "select * from events;";
+        $sql = sprintf($stmt);
+
+        $result = $this->db->query($sql);
+
+        $all_events = array();
+
+        foreach ($result->result() as $row) {
+            $event = array(
+                'event_type' => $row->event_type,
+                'event_name' => $row->event_name,
+                'event_datetime' => $row->event_datetime,
+                'event_location' => $row->event_location,
+                'event_id' => $row->event_id,
+                'user_id' => $this->session->user_id
+
+            );
+            array_push($all_events, $event);
+        }
+
+        return $all_events;
+    }
+
+    public function confirm_event_participation($event_id, $user_id)
+    {
+        $stmt = "insert into my_events values ('%s', '%s');";
+        $sql = sprintf($stmt, $user_id, $event_id);
+
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
+
 }
