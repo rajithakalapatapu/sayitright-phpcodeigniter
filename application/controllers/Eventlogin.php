@@ -20,6 +20,10 @@ class Eventlogin extends CI_Controller
     {
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
 
+        if (! $this->event_user_logged_in()) {
+            $this->go_to_login_page($data);
+        }
+
         if ($this->validate_new_event_entry()) {
             // now create the event
             $affected_rows = $this->events_model->create_event(
@@ -37,16 +41,6 @@ class Eventlogin extends CI_Controller
 
         }
 
-        $this->load_page($data);
-    }
-
-    public function delete($event_id)
-    {
-        $affected_row = $this->events_model->delete($event_id);
-        if ($affected_row) {
-            //TODO: show success message
-        }
-        $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
         $this->load_page($data);
     }
 
@@ -109,4 +103,28 @@ class Eventlogin extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    public function delete($event_id)
+    {
+        $affected_row = $this->events_model->delete($event_id);
+        if ($affected_row) {
+            //TODO: show success message
+        }
+        $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
+        $this->load_page($data);
+    }
+
+    private function go_to_login_page($data)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/login');
+        $this->load->view('templates/footer', $data);
+    }
+
+    private function event_user_logged_in()
+    {
+        if($this->session->user_type == "event" && $this->session->user_id != 0) {
+            return true;
+        }
+        return false;
+    }
 }

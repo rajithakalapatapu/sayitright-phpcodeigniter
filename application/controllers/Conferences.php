@@ -37,6 +37,7 @@ class Conferences extends CI_Controller
     private function load_page($data)
     {
         $user_id = $this->session->user_id;
+
         $data['all_conferences'] = $this->conferences_model->get_all_conferences();
 
         $this->load->view('templates/loggedinheader', $data);
