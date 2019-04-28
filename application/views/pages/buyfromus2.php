@@ -1,6 +1,6 @@
 <script>
     function clear_cart() {
-        window.location.href = 'buyfromus/clear_cart';
+        window.location.href = 'buyfromus2/clear_cart';
     }
 </script>
 
@@ -8,32 +8,31 @@
     <p class="buyfromuscontenttitle"> Buy From Us </p>
     <div class="shipping">
 
-        <form method="post" action="<?php // echo htmlspecialchars($_SERVER[PHP_SELF]); ?>"
-              onsubmit="return submit_shipping_form();">
+        <?php echo form_open('buyfromus2/place_order'); ?>
             <div class="shipping_left">
                 <h2 class="shippingh3"> Contact Information </h2>
-                <input name="email" id="email" placeholder="Enter Email" type="text" required>
-                <span id="emailErr" class="error"></span>
+                <input name="email" id="email" placeholder="Enter Email" type="text">
+                <span class="error"> *  <?php echo form_error('email'); ?> </span>
                 <h2 class="shippingh3"> Shipping address </h2>
                 <div class="shipping_one_line">
-                    <input type="text" id="fname" name="fname" placeholder="Enter First name" required>
-                    <span id="fnameErr" class="error"></span>
-                    <input type="text" id="lname" name="lname" placeholder="Enter Last name" required>
-                    <span id="lnameErr" class="error"></span>
+                    <input type="text" id="fname" name="fname" placeholder="Enter First name">
+                    <span class="error"> *  <?php echo form_error('fname'); ?> </span>
+                    <input type="text" id="lname" name="lname" placeholder="Enter Last name">
+                    <span class="error"> *  <?php echo form_error('lname'); ?> </span>
                 </div>
-                <input type="text" name="address" id="address" placeholder="Enter Address" required>
-                <span id="addressErr" class="error"></span>
-                <input type="text" name="apartment" id="apartment" placeholder="Enter Apartment, suite, etc." required>
-                <span id="apartmentErr" class="error"></span>
-                <input type="text" name="city" id="city" placeholder="Enter City" required>
-                <span id="cityErr" class="error"></span>
+                <input type="text" name="address" id="address" placeholder="Enter Address">
+                <span class="error"> *  <?php echo form_error('address'); ?> </span>
+                <input type="text" name="apartment" id="apartment" placeholder="Enter Apartment, suite, etc.">
+                <span class="error"> *  <?php echo form_error('apartment'); ?> </span>
+                <input type="text" name="city" id="city" placeholder="Enter City">
+                <span class="error"> *  <?php echo form_error('city'); ?> </span>
                 <div class="shipping_one_line">
                     <select name="language">
                         <option value="English" selected>English</option>
                         <option value="Spanish">Spanish</option>
                     </select>
-                    <input type="text" name="postal" id="postal" placeholder="Enter Postal Code" required>
-                    <span id="postalErr" class="error"></span>
+                    <input type="text" name="postal" id="postal" placeholder="Enter Postal Code">
+                    <span class="error"> *  <?php echo form_error('postal'); ?> </span>
                 </div>
                 <button class="shippingsend" id="button">PLACE ORDER</button>
                 <button class="shippingsend" id="button" onclick="clear_cart()">CLEAR CART</button>
@@ -83,7 +82,10 @@
                                     </div>
                                 ";
 
-                            $_SESSION['total'] += $details['price_per_unit'] *  $quantity['quantity'];
+                                if(! isset($_SESSION['total'])) {
+                                    $_SESSION['total'] = 0;
+                                }
+                                $_SESSION['total'] += $details['price_per_unit'] *  $quantity['quantity'];
                                 echo sprintf(
                                     $each_cart_item,
                                     base_url() . $details['product_picture'],

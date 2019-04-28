@@ -43,9 +43,4 @@ class Buyfromus extends CI_Controller
         redirect(base_url() . 'index.php/' . strtolower(get_class($this)));
     }
 
-    public function clear_cart()
-    {
-        session_destroy();
-        redirect(base_url() . 'index.php/' . strtolower(get_class($this)));
-    }
 }
