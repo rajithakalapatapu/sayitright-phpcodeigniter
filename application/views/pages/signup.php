@@ -25,32 +25,32 @@
 <!--                <p> --><?php //echo $db_insert_status; ?><!-- </p>-->
 <!--                <p> --><?php //echo $redirect_link; ?><!-- </p>-->
             </div>
-            <form name="ind_form" method="POST" action="" onsubmit="return ind_function();">
+            <?php echo form_open('signup/signup_individual') ?>
                 <div class="individualsignupform" id="individualsignupform" style="display: none">
                     <h3> Welcome to the individual registration</h3><br>
                     <div>
                         <input type="text" id="ind_fname" name="ind_fname" placeholder="Enter your name" required>
-<!--                        <span id="ind_fnameErr" class="" error"> * --><?php //echo $individual_signup["ind_fnameErr"] ?><!--</span>-->
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('ind_fname'); ?> </span>
                     </div>
                     <div>
                         <input type="text" id="ind_lname" name="ind_lname" placeholder="Enter last name" required>
-<!--                        <span id="ind_lnameErr" class="error"> *--><?php //echo $individual_signup["ind_lnameErr"] ?><!--</span>-->
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('ind_lname'); ?> </span>
                     </div>
                     <div>
                         <input type="text" id="ind_work" name="ind_work" placeholder="Enter place of work" required>
-<!--                        <span id="ind_workErr" class="error"> *--><?php //echo $individual_signup["ind_workErr"] ?><!--</span>-->
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('ind_work'); ?> </span>
                     </div>
                     <div>
                         <input type="text" id="ind_school" name="ind_school" placeholder="Enter school" required>
-<!--                        <span id="ind_schoolErr" class="error"> *--><?php //echo $individual_signup["ind_schoolErr"] ?><!--</span>-->
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('ind_school'); ?> </span>
                     </div>
                     <div>
                         <input type="email" id="ind_email" name="ind_email" placeholder="Enter email" required>
-<!--                        <span id="ind_emailErr" class="error"> *--><?php //echo $individual_signup["ind_emailErr"] ?><!--</span>-->
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('ind_email'); ?> </span>
                     </div>
                     <div>
                         <input type="password" id="ind_password" name="ind_password" placeholder="Enter password" required>
-<!--                        <span id="ind_passwordErr" class="error"> *--><?php //echo $individual_signup["ind_passwordErr"] ?><!--</span>-->
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('ind_password'); ?> </span>
                     </div>
                     <input type="text" id="ind_form" name="ind_form" placeholder="" style="display:none">
                     <input type="submit" value="SEND" class="signupsend">
