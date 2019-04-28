@@ -102,4 +102,34 @@ class Events_model extends CI_Model
         return $this->db->affected_rows();
     }
 
+    public function get_count_all_events()
+    {
+        $stmt = "select count(*) as count from events;";
+        $sql = sprintf($stmt);
+
+        $counts = 0;
+
+        $result = $this->db->query($sql);
+        foreach ($result->result() as $row) {
+            $counts = $row->count;
+        }
+
+        return $counts;
+    }
+
+    public function get_count_user_events($user_id)
+    {
+        $stmt = "select count(*) as count from my_events where individual_id = '%s';";
+        $sql = sprintf($stmt, $user_id);
+
+        $counts = 0;
+
+        $result = $this->db->query($sql);
+        foreach ($result->result() as $row) {
+            $counts = $row->count;
+        }
+
+        return $counts;
+    }
+
 }

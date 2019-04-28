@@ -40,4 +40,34 @@ class Conferences_model extends CI_Model
 
         return $all_conferences;
     }
+
+    public function get_count_all_conferences()
+    {
+        $stmt = "select count(*) as conf_count from conferences;";
+        $sql = sprintf($stmt);
+
+        $counts = 0;
+
+        $result = $this->db->query($sql);
+        foreach ($result->result() as $row) {
+            $counts = $row->conf_count;
+        }
+
+        return $counts;
+    }
+
+    public function get_count_user_conferences($user_id)
+    {
+        $stmt = "select count(*) as conf_count from my_conferences where individual_id = '%s';";
+        $sql = sprintf($stmt, $user_id);
+
+        $counts = 0;
+
+        $result = $this->db->query($sql);
+        foreach ($result->result() as $row) {
+            $counts = $row->conf_count;
+        }
+
+        return $counts;
+    }
 }
