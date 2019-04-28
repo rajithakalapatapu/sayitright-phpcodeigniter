@@ -35,8 +35,7 @@ class Myevents extends CI_Controller
             //TODO: show success message
         }
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
-        $this->load_page($data);
-
+        redirect(base_url() . 'index.php/' . strtolower(get_class($this)));
     }
 
     private function load_page($data)
