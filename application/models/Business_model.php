@@ -26,4 +26,47 @@ class Business_model extends CI_Model
 
         return false;
     }
+
+    public function get_current_user_businesses($user_id)
+    {
+        $stmt = "select * from my_businesses where business_created_by='%s'";
+        $sql = sprintf($stmt, $user_id);
+
+        $result = $this->db->query($sql);
+
+        $current_user_businesss = array();
+
+        foreach ($result->result() as $row) {
+            $current_user_business = array(
+                'business_name' => $row->business_name,
+                'business_address' => $row->business_address,
+                'business_description' => $row->business_description,
+                'business_license_number' => $row->business_license_number,
+                'business_id' => $row->business_id
+
+            );
+            array_push($current_user_businesss, $current_user_business);
+        }
+
+        return $current_user_businesss;
+    }
+
+    public function delete($business_id)
+    {
+        $stmt = "delete from my_businesses where business_id = '%s';";
+        $sql = sprintf($stmt, $business_id);
+
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
+
+    public function create_business($business_name, $business_address, $business_description, $business_license_number, $business_created_by)
+    {
+        $stmt = "insert into my_businesses(`business_name`, `business_address`, `business_description`, `business_license_number`, `business_created_by`) values ('%s', '%s', '%s', '%s', '%s');";
+        $sql = sprintf($stmt, $business_name, $business_address, $business_description, $business_license_number, $business_created_by);
+
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
+
 }
