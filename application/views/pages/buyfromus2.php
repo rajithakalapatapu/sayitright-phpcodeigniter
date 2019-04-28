@@ -1,3 +1,9 @@
+<script>
+    function clear_cart() {
+        window.location.href = 'buyfromus/clear_cart';
+    }
+</script>
+
 <div class="content" id="wrapper">
     <p class="buyfromuscontenttitle"> Buy From Us </p>
     <div class="shipping">
@@ -36,7 +42,11 @@
                 <div class="shipping_right">
                     <div class="shipping_table">
                         <?php
-                        $cart_items = $_SESSION['cart'];
+                        $cart_items = null;
+                        if (isset($_SESSION['cart'])) {
+                            $cart_items = $_SESSION['cart'];
+                        }
+
                         if (!empty($cart_items)) {
 
                             echo "

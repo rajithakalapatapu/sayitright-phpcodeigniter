@@ -42,4 +42,10 @@ class Buyfromus extends CI_Controller
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
         redirect(base_url() . 'index.php/' . strtolower(get_class($this)));
     }
+
+    public function clear_cart()
+    {
+        session_destroy();
+        redirect(base_url() . 'index.php/' . strtolower(get_class($this)));
+    }
 }
