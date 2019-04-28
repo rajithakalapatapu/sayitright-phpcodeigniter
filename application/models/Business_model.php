@@ -77,4 +77,30 @@ class Business_model extends CI_Model
         $this->db->query($sql);
         return $this->db->affected_rows();
     }
+
+    public function get_details($user_id)
+    {
+        $stmt = "select * from business_users where business_user_id='%s'";
+        $sql = sprintf($stmt, $user_id);
+
+        $result = $this->db->query($sql);
+
+        $user_details = array();
+        foreach ($result->result() as $row) {
+            $user_details['name'] = $row->name;
+            $user_details['email'] = $row->email;
+            $user_details['password'] = $row->password;
+        }
+
+        return $user_details;
+    }
+
+    public function update_business_details($fname, $password, $email, $user_id)
+    {
+        $stmt = "update business_users set name = '%s', password = '%s', email = '%s' where business_user_id = '%s';";
+        $sql = sprintf($stmt, $fname, $password, $email, $user_id);
+
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
 }

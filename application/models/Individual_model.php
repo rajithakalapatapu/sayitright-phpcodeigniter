@@ -34,4 +34,33 @@ class Individual_model extends CI_Model
         $this->db->query($sql);
         return $this->db->affected_rows();
     }
+
+    public function get_details($user_id)
+    {
+        $stmt = "select * from individual_users where individual_id='%s'";
+        $sql = sprintf($stmt, $user_id);
+
+        $result = $this->db->query($sql);
+
+        $user_details = array();
+        foreach ($result->result() as $row) {
+            $user_details['fname'] = $row->first_name;
+            $user_details['lname'] = $row->last_name;
+            $user_details['work'] = $row->place_of_work;
+            $user_details['school'] = $row->school;
+            $user_details['email'] = $row->email;
+            $user_details['password'] = $row->password;
+        }
+
+        return $user_details;
+    }
+
+    public function update_individual_details($fname, $lname, $work, $school, $email, $password, $user_id)
+    {
+        $stmt = "update individual_users set first_name = '%s', last_name = '%s', place_of_work = '%s', password = '%s', school = '%s', email = '%s' where individual_id = '%s';";
+        $sql = sprintf($stmt, $fname, $lname, $work, $password, $school, $email, $user_id);
+
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
 }
