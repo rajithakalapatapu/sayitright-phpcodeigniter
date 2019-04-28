@@ -117,6 +117,6 @@
         <h6 id="footerh6"> You can the products that you added to your cart </h6>
     </div>
     <div class="footerright">
-        <button id="cartbuy" onclick="location.href = 'buyfromus2.php';">SUBMIT</button>
+        <button id="cartbuy" onclick="location.href = '<?php echo base_url();?>index.php/buyfromus2';">SUBMIT</button>
     </div>
 </div>
