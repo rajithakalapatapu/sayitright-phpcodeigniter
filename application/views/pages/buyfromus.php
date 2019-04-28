@@ -55,7 +55,7 @@
     function add_product_quantity_to_cart() {
         product_id = document.getElementById('product_id').innerHTML;
         quantity = document.getElementById('product_quantity').value;
-        window.location.href = "buyfromus.php?product_id=".concat(product_id).concat("&quantity=").concat(quantity);
+        window.location.href = "buyfromus/update/" + product_id + "/" + quantity;
     }
 
     function close_modal() {
