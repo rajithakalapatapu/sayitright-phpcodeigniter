@@ -56,24 +56,24 @@
                     <input type="submit" value="SEND" class="signupsend">
                 </div>
             </form>
-            <form name="event_form" method="POST" action="" onsubmit="return event_function();">
+            <?php echo form_open('signup/signup_event') ?>
                 <div class="eventsignupform" id="eventsignupform" style="display: none">
                     <h3> Welcome to the event log</h3><br>
                     <div>
                         <input type="text" id="event_fname" name="event_fname" placeholder="Enter your name" required>
-<!--                        <span id="event_fnameErr" class="" error"> * --><?php //echo $event_signup["event_fnameErr"]; ?><!--</span>-->
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('event_fname'); ?> </span>
                     </div>
                     <div>
                         <input type="text" id="event_lname" name="event_lname" placeholder="Enter last name" required>
-<!--                        <span id="event_lnameErr" class="" error"> * --><?php //echo $event_signup["event_lnameErr"]; ?><!--</span>-->
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('event_lname'); ?> </span>
                     </div>
                     <div>
                         <input type="email" id="event_email" name="event_email" placeholder="Enter email" required>
-<!--                        <span id="event_emailErr" class="" error"> * --><?php //echo $event_signup["event_emailErr"]; ?><!-- </span>-->
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('event_email'); ?> </span>
                     </div>
                     <div>
                         <input type="password" id="event_password" name="event_password" placeholder="Enter password" required>
-<!--                        <span id="event_passwordErr" class="" error"> * --><?php //echo $event_signup["event_passwordErr"]; ?><!-- </span>-->
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('event_password'); ?> </span>
                     </div>
                     <input type="text" id="event_form" name="event_form" placeholder="" style="display:none">
                     <input type="submit" value="SEND" class="signupsend">

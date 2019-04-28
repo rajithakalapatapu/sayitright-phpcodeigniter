@@ -156,4 +156,13 @@ class Events_model extends CI_Model
 
         return $all_events;
     }
+
+    public function signup_event($fname, $lname, $password, $email)
+    {
+        $stmt = "INSERT INTO event_users (`first_name`, `last_name`, `password`, `email`) VALUES ('%s', '%s', '%s','%s');";
+        $sql = sprintf($stmt, $fname, $lname, $password, $email);
+
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
 }

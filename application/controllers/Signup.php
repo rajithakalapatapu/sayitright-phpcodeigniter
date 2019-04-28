@@ -10,6 +10,7 @@ class Signup extends CI_Controller
         $this->load->library('form_validation');
 
         $this->load->model('individual_model');
+        $this->load->model('events_model');
 
         $this->load->helper('form');
         $this->load->helper('url');
@@ -86,6 +87,60 @@ class Signup extends CI_Controller
                 $this->input->post('ind_password'),
                 $this->input->post('ind_school'),
                 $this->input->post('ind_email')
+            );
+            if($status) {
+                //TODO SUCCESSFUl!
+                $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
+                $this->load_page($data);
+            }
+        }
+    }
+
+    public function signup_event()
+    {
+        $config = array(
+            array(
+                'field' => 'event_fname',
+                'label' => 'First Name',
+                'rules' => 'trim|required|regex_match[/^[A-Za-z ]*$/]',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid alphabetic name.',
+                ),
+            ),
+            array(
+                'field' => 'event_lname',
+                'label' => 'Last Name',
+                'rules' => 'trim|required|regex_match[/^[A-Za-z ]*$/]',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid alphabetic name.',
+                ),
+            ),
+            array(
+                'field' => 'event_password',
+                'label' => 'Password',
+                'rules' => 'trim|required',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid password.',
+                ),
+            ),
+            array(
+                'field' => 'event_email',
+                'label' => 'Email',
+                'rules' => 'trim|required|valid_email',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid email.',
+                ),
+            )
+        );
+
+        $this->form_validation->set_rules($config);
+
+        if ($this->form_validation->run()) {
+            $status = $this->events_model->signup_event(
+                $this->input->post('event_fname'),
+                $this->input->post('event_lname'),
+                $this->input->post('event_password'),
+                $this->input->post('event_email')
             );
             if($status) {
                 //TODO SUCCESSFUl!
