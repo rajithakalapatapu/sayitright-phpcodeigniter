@@ -11,6 +11,7 @@ class Signup extends CI_Controller
 
         $this->load->model('individual_model');
         $this->load->model('events_model');
+        $this->load->model('business_model');
 
         $this->load->helper('form');
         $this->load->helper('url');
@@ -141,6 +142,61 @@ class Signup extends CI_Controller
                 $this->input->post('event_lname'),
                 $this->input->post('event_password'),
                 $this->input->post('event_email')
+            );
+            if($status) {
+                //TODO SUCCESSFUl!
+                $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
+                $this->load_page($data);
+            }
+        }
+    }
+
+    public function signup_business()
+    {
+        $config = array(
+            array(
+                'field' => 'busi_lname',
+                'label' => 'Last Name',
+                'rules' => 'trim|required|regex_match[/^[A-Za-z ]*$/]',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid alphabetic name.',
+                ),
+            ),
+            array(
+                'field' => 'busi_password',
+                'label' => 'Password',
+                'rules' => 'trim|required',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid password.',
+                ),
+            ),
+            array(
+                'field' => 'busi_email',
+                'label' => 'Email',
+                'rules' => 'trim|required|valid_email',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid email.',
+                ),
+            )
+        );
+
+        $this->form_validation->set_rules($config);
+
+        if($this->input->post('businesstype') == "University") {
+            $is_business = 1;
+            $is_company = 0;
+        } else {
+            $is_business = 0;
+            $is_company = 1;
+        }
+
+        if ($this->form_validation->run()) {
+            $status = $this->business_model->signup_business(
+                $this->input->post('busi_lname'),
+                $this->input->post('busi_email'),
+                $this->input->post('busi_password'),
+                $is_business,
+                $is_company
             );
             if($status) {
                 //TODO SUCCESSFUl!

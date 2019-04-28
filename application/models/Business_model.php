@@ -69,4 +69,12 @@ class Business_model extends CI_Model
         return $this->db->affected_rows();
     }
 
+    public function signup_business($name, $email, $password, $is_university, $is_company)
+    {
+        $stmt = "INSERT INTO business_users (`name`, `email`, `password`, `is_university`, `is_company`) VALUES ('%s', '%s', '%s', '%s', '%s');";
+        $sql = sprintf($stmt, $name, $email, $password, $is_university, $is_company);
+
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
 }

@@ -79,7 +79,7 @@
                     <input type="submit" value="SEND" class="signupsend">
                 </div>
             </form>
-            <form name="busi_form" method="POST" action="" onsubmit="return busi_function();">
+            <?php echo form_open('signup/signup_business') ?>
                 <div class="businesssignupform" id="businesssignupform" style="display: none">
                     <h3> Welcome to business records</h3><br>
                     <div class="radiobuttons">
@@ -89,16 +89,15 @@
                     </div>
                     <div>
                         <input type="text" id="busi_lname" name="busi_lname" placeholder="Enter last name" required>
-<!--                        <span id="busi_lnameErr" class="error"> *--><?php //echo $business_signup["busi_lnameErr"] ?><!--</span>-->
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('busi_lname'); ?> </span>
                     </div>
                     <div>
                         <input type="email" id="busi_email" name="busi_email" placeholder="Enter email" required>
-<!--                        <span id="busi_emailErr" class="error"> * --><?php //echo $business_signup["busi_emailErr"] ?><!--</span>-->
-
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('busi_email'); ?> </span>
                     </div>
                     <div>
                         <input type="password" id="busi_password" name="busi_password" placeholder="Enter password" required>
-<!--                        <span id="busi_passwordErr" class="error"> * --><?php //echo $business_signup["busi_passwordErr"] ?><!--</span>-->
+                        <span id="fnameErr" class="error"> *  <?php echo form_error('busi_password'); ?> </span>
                     </div>
                     <input type="text" id="busi_form" name="busi_form" placeholder="" style="display:none">
                     <input type="submit" value="SEND" class="signupsend">
