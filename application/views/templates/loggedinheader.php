@@ -18,7 +18,10 @@
     </div>
     <div class="nav_right">
         <ul>
-            <li><a href="<?php echo base_url(); ?>index.php/eventlogin" class="activetab">Home</a></li>
+            <?php
+            require_once('headerutils.php');
+            echo get_home_link_for_logged_in_user();
+            ?>
             <li><a href="<?php echo base_url(); ?>index.php/conferences">Conferences</a></li>
             <li><a href="<?php echo base_url(); ?>index.php/events">Events</a></li>
             <li><a href="<?php echo base_url(); ?>index.php/myconferences">My Conferences</a></li>
