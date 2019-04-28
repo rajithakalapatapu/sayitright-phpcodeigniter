@@ -57,38 +57,35 @@
         <div class="emptycard">
         </div>
 
-<!--        --><?php
-//
-//        require_once('dboperations.php');
-//        session_start();
-//        $all_events = get_all_participanting_events($_SESSION['user_id']);
-//        while($row = $all_events->fetch()) {
-//            $each_event = "
-//                    <div class=\"onecard bluecard\">
-//                        <div class=\"white_text bold_text blue_header\"> %s</div>
-//                        <div class=\"white_text bold_text\"> %s </div>
-//                        <div class=\"white_text card_content\">
-//                            <p> %s </p>
-//                        </div>
-//                    </div>
-//                ";
-//            echo sprintf($each_event, $row['event_type'], $row['event_name'], $row['event_datetime'] . "\t" . $row['event_location']);
-//        }
-//        $all_conferences = get_all_participanting_conferences($_SESSION['user_id']);
-//        while($row = $all_conferences->fetch()) {
-//            $each_conference = "
-//                    <div class=\"onecard greencard\">
-//                        <div class=\"white_text bold_text grey_header\"> %s </div>
-//                        <div class=\"white_text bold_text\"> %s</div>
-//                        <div class=\"white_text card_content\">
-//                            <p> %s </p>
-//                        </div>
-//                    </div>
-//                ";
-//            echo sprintf($each_conference, $row['conference_type'], $row['conference_name'], $row['conference_datetime'] . "\t" . $row['conference_location']);
-//        }
-//        ?>
-<!--        -->
+        <?php
+
+        foreach($all_events as $row) {
+            $each_event = "
+                    <div class=\"onecard bluecard\">
+                        <div class=\"white_text bold_text blue_header\"> %s</div>
+                        <div class=\"white_text bold_text\"> %s </div>
+                        <div class=\"white_text card_content\">
+                            <p> %s </p>
+                        </div>
+                    </div>
+                ";
+            echo sprintf($each_event, $row['event_type'], $row['event_name'], $row['event_datetime'] . "\t" . $row['event_location']);
+        }
+
+        foreach($all_conferences as $row) {
+            $each_conference = "
+                    <div class=\"onecard greencard\">
+                        <div class=\"white_text bold_text grey_header\"> %s </div>
+                        <div class=\"white_text bold_text\"> %s</div>
+                        <div class=\"white_text card_content\">
+                            <p> %s </p>
+                        </div>
+                    </div>
+                ";
+            echo sprintf($each_conference, $row['conference_type'], $row['conference_name'], $row['conference_datetime'] . "\t" . $row['conference_location']);
+        }
+        ?>
+
         <div class="onecard bluecard">
             <div class="white_text bold_text blue_header">Header</div>
             <div class="white_text bold_text">Primary Card title</div>

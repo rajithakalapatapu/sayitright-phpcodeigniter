@@ -53,6 +53,9 @@ class Individuallogin extends CI_Controller
         $data['all_events_count'] = $this->events_model->get_count_all_events();
         $data['my_events_count'] = $this->events_model->get_count_user_events($user_id);
 
+        $data['all_events'] = $this->events_model->get_participating_events($user_id);
+        $data['all_conferences'] = $this->conferences_model->get_participating_conferences($user_id);
+
         $this->load->view('templates/loggedinheader', $data);
         $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
         $this->load->view('templates/footer', $data);

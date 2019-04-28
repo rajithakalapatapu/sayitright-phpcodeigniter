@@ -70,4 +70,29 @@ class Conferences_model extends CI_Model
 
         return $counts;
     }
+
+    public function get_participating_conferences($user_id)
+    {
+        $stmt = "select * from conferences where conference_id in (SELECT conference_id FROM `my_conferences` WHERE individual_id = '%s');";
+        $sql = sprintf($stmt, $user_id);
+
+        $result = $this->db->query($sql);
+
+        $all_conferences = array();
+
+        foreach ($result->result() as $row) {
+            $conference = array(
+                'conference_type' => $row->conference_type,
+                'conference_name' => $row->conference_name,
+                'conference_datetime' => $row->conference_datetime,
+                'conference_location' => $row->conference_location,
+                'conference_id' => $row->conference_id,
+                'user_id' => $this->session->user_id
+
+            );
+            array_push($all_conferences, $conference);
+        }
+
+        return $all_conferences;
+    }
 }
