@@ -18,13 +18,7 @@ class Logout extends CI_Controller
 
         $this->session->sess_destroy();
 
-        $this->load_page($data);
+        redirect(base_url() . 'index.php/login');
     }
 
-    private function load_page($data)
-    {
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/login');
-        $this->load->view('templates/footer', $data);
-    }
 }
