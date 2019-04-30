@@ -25,6 +25,13 @@ class Signup extends CI_Controller
         $this->load_page($data);
     }
 
+    private function load_page($data)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
+        $this->load->view('templates/footer', $data);
+    }
+
     public function signup_individual()
     {
         $config = array(
@@ -89,7 +96,7 @@ class Signup extends CI_Controller
                 $this->input->post('ind_school'),
                 $this->input->post('ind_email')
             );
-            if($status) {
+            if ($status) {
                 //TODO SUCCESSFUl!
                 $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
                 $this->load_page($data);
@@ -143,7 +150,7 @@ class Signup extends CI_Controller
                 $this->input->post('event_password'),
                 $this->input->post('event_email')
             );
-            if($status) {
+            if ($status) {
                 //TODO SUCCESSFUl!
                 $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
                 $this->load_page($data);
@@ -182,7 +189,7 @@ class Signup extends CI_Controller
 
         $this->form_validation->set_rules($config);
 
-        if($this->input->post('businesstype') == "University") {
+        if ($this->input->post('businesstype') == "University") {
             $is_business = 1;
             $is_company = 0;
         } else {
@@ -198,18 +205,11 @@ class Signup extends CI_Controller
                 $is_business,
                 $is_company
             );
-            if($status) {
+            if ($status) {
                 //TODO SUCCESSFUl!
                 $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
                 $this->load_page($data);
             }
         }
-    }
-
-    private function load_page($data)
-    {
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
-        $this->load->view('templates/footer', $data);
     }
 }

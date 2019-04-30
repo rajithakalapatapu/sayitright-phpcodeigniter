@@ -28,26 +28,6 @@ class Myconferences extends CI_Controller
         $this->load_page($data);
     }
 
-    public function unconfirm_conference_participation($conference_id, $user_id)
-    {
-        $affected_row = $this->myconferences_model->unconfirm_conference_participation($conference_id, $user_id);
-        if ($affected_row) {
-            //TODO: show success message
-        }
-        $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
-        redirect(base_url() . 'index.php/' . strtolower(get_class($this)));
-    }
-
-    private function load_page($data)
-    {
-        $user_id = $this->session->user_id;
-        $data['all_myconferences'] = $this->myconferences_model->get_all_my_conferences($user_id);
-
-        $this->load->view('templates/loggedinheader', $data);
-        $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
-        $this->load->view('templates/footer', $data);
-    }
-
     private function any_valid_user_logged_in()
     {
         if ($this->session->user_type == "event" && $this->session->user_id != 0) {
@@ -65,6 +45,26 @@ class Myconferences extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('pages/login');
         $this->load->view('templates/footer', $data);
+    }
+
+    private function load_page($data)
+    {
+        $user_id = $this->session->user_id;
+        $data['all_myconferences'] = $this->myconferences_model->get_all_my_conferences($user_id);
+
+        $this->load->view('templates/loggedinheader', $data);
+        $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function unconfirm_conference_participation($conference_id, $user_id)
+    {
+        $affected_row = $this->myconferences_model->unconfirm_conference_participation($conference_id, $user_id);
+        if ($affected_row) {
+            //TODO: show success message
+        }
+        $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
+        redirect(base_url() . 'index.php/' . strtolower(get_class($this)));
     }
 
 }

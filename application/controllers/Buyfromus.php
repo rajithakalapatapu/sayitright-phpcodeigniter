@@ -33,7 +33,7 @@ class Buyfromus extends CI_Controller
         $quantity = $quantity <= 0 ? 1 : $quantity;
         $cart_item = array('quantity' => $quantity);
 
-        if(!isset($_SESSION['cart'])) {
+        if (!isset($_SESSION['cart'])) {
             echo "Does not exist";
             $_SESSION['cart'] = array();
         }

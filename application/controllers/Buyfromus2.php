@@ -27,6 +27,13 @@ class Buyfromus2 extends CI_Controller
         $this->load_page($data);
     }
 
+    private function load_page($data)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
+        $this->load->view('templates/footer', $data);
+    }
+
     public function place_order()
     {
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
@@ -131,12 +138,5 @@ class Buyfromus2 extends CI_Controller
     {
         session_destroy();
         redirect(base_url() . 'index.php/' . strtolower(get_class($this)));
-    }
-
-    private function load_page($data)
-    {
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
-        $this->load->view('templates/footer', $data);
     }
 }

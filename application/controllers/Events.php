@@ -28,6 +28,25 @@ class Events extends CI_Controller
         $this->load_page($data);
     }
 
+    private function any_valid_user_logged_in()
+    {
+        if ($this->session->user_type == "event" && $this->session->user_id != 0) {
+            return true;
+        } else if ($this->session->user_type == "business" && $this->session->user_id != 0) {
+            return true;
+        } else if ($this->session->user_type == "individual" && $this->session->user_id != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private function go_to_login_page($data)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/login');
+        $this->load->view('templates/footer', $data);
+    }
+
     private function load_page($data)
     {
         $user_id = $this->session->user_id;
@@ -46,25 +65,6 @@ class Events extends CI_Controller
         }
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
         redirect(base_url() . 'index.php/' . strtolower(get_class($this)));
-    }
-
-    private function any_valid_user_logged_in()
-    {
-        if ($this->session->user_type == "event" && $this->session->user_id != 0) {
-            return true;
-        } else if ($this->session->user_type == "business" && $this->session->user_id != 0) {
-            return true;
-        } else if ($this->session->user_type == "individual" && $this->session->user_id != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    private function go_to_login_page($data)
-    {
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/login');
-        $this->load->view('templates/footer', $data);
     }
 
 
