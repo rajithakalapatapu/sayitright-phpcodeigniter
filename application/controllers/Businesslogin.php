@@ -19,6 +19,7 @@ class Businesslogin extends CI_Controller
     public function index()
     {
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
+        $data['status'] = "";
 
         if (!$this->business_user_logged_in()) {
             $this->go_to_login_page($data);
@@ -35,10 +36,10 @@ class Businesslogin extends CI_Controller
             );
 
             if ($affected_rows) {
-                //TODO: Actually show that we successfully created the business!
+                $data['status'] = "Successfully created business";
+            } else {
+                $data['status'] = "Please try again later!";
             }
-
-
         }
 
         $this->load_page($data);
@@ -116,7 +117,6 @@ class Businesslogin extends CI_Controller
         if ($affected_row) {
             //TODO: show success message
         }
-        $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
-        $this->load_page($data);
+        redirect(base_url() . 'index.php/' . strtolower(get_class($this)));
     }
 }
