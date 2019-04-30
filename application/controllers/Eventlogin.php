@@ -123,9 +123,8 @@ class Eventlogin extends CI_Controller
     {
         $affected_row = $this->events_model->delete($event_id);
         if ($affected_row) {
-            //TODO: show success message
+            // all good - we redirect to the next page - so need not show status
         }
-        $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
-        $this->load_page($data);
+        redirect(base_url() . 'index.php/' . strtolower(get_class($this)));
     }
 }

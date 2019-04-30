@@ -62,7 +62,7 @@ class Conferences extends CI_Controller
     {
         $affected_row = $this->conferences_model->confirm_conference_participation($conference_id, $user_id);
         if ($affected_row) {
-            //TODO: show success message
+            // all good - we redirect to the next page - so need not show status
         }
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
         redirect(base_url() . 'index.php/' . strtolower(get_class($this)));
