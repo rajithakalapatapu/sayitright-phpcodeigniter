@@ -77,6 +77,12 @@
                 <input type="submit" value="Add business">
             </div>
         </form>
-        <p> <?php if(isset($status)) { echo $status; } ?> </p>
+        <p>
+            <?php
+            if (isset($status)) {
+                echo $status;
+            }
+            ?>
+        </p>
     </div>
 </div>

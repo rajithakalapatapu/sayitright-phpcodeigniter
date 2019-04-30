@@ -77,7 +77,13 @@
                 <input type="submit" value="Add event">
             </div>
             <div class="add_event_form_div">
-                <p> <?php echo $status; ?>    </p>
+                <p>
+                    <?php
+                    if (isset($status)) {
+                        echo $status;
+                    }
+                    ?>
+                </p>
             </div>
         </form>
 

@@ -40,7 +40,13 @@
             </form>
         </div>
         <div>
-            <p> <?php echo $status; ?> </p>
+            <p>
+                <?php
+                if (isset($status)) {
+                    echo $status;
+                }
+                ?>
+            </p>
         </div>
 
     </div>

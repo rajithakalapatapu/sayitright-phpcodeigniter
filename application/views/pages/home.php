@@ -35,8 +35,11 @@
             <?php echo form_open('home'); ?>
                 <input type="email" name="subscribe_email" id="footertextarea"
                        placeholder="Enter email address" required></input>
-                <!--            <span id="subscribe_emailErr" class="error"> * -->
-                <?php echo $status; ?><!-- </span>-->
+                <?php
+                if (isset($status)) {
+                    echo $status;
+                }
+                ?>
                 <input type="submit" id="footersubscribe" text="Subscribe">
             </form>
         </div>

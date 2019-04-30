@@ -28,6 +28,12 @@
                 <button class="contactussend" id="button">SEND MESSAGE</button>
             </div>
         </form>
-        <div class="successful_form_submit"> <?php echo $status; ?> </div>
+        <div class="successful_form_submit">
+            <?php
+            if (isset($status)) {
+                echo $status;
+            }
+            ?>
+        </div>
     </div>
 </div>
