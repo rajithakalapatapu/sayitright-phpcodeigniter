@@ -22,8 +22,20 @@
                 </div>
             </div>
             <div>
-<!--                <p> --><?php //echo $db_insert_status; ?><!-- </p>-->
-<!--                <p> --><?php //echo $redirect_link; ?><!-- </p>-->
+                <p>
+                    <?php
+                    if (isset($status)) {
+                        echo $status;
+                    }
+                    ?>
+                </p>
+                <p>
+                    <?php
+                    if (isset($redirect_link)) {
+                        echo $redirect_link;
+                    }
+                    ?>
+                </p>
             </div>
             <?php echo form_open('signup/signup_individual') ?>
                 <div class="individualsignupform" id="individualsignupform" style="display: none">

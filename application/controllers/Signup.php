@@ -97,10 +97,19 @@ class Signup extends CI_Controller
                 $this->input->post('ind_email')
             );
             if ($status) {
-                //TODO SUCCESSFUl!
                 $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
-                $this->load_page($data);
+
+                $data['status'] = "Successfully signed up!";
+
+                $a_tag = "<a href=\"%s\"> Click here to login </a>";
+                $link = sprintf($a_tag, base_url() . 'index.php/login');
+                $data['redirect_link'] = $link;
+
+            } else {
+                $data['status'] = "Please try again";
             }
+
+            $this->load_page($data);
         }
     }
 
@@ -151,10 +160,19 @@ class Signup extends CI_Controller
                 $this->input->post('event_email')
             );
             if ($status) {
-                //TODO SUCCESSFUl!
                 $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
-                $this->load_page($data);
+
+                $data['status'] = "Successfully signed up!";
+
+                $a_tag = "<a href=\"%s\"> Click here to login </a>";
+                $link = sprintf($a_tag, base_url() . 'index.php/login');
+                $data['redirect_link'] = $link;
+
+            } else {
+                $data['status'] = "Please try again";
             }
+
+            $this->load_page($data);
         }
     }
 
@@ -206,10 +224,19 @@ class Signup extends CI_Controller
                 $is_company
             );
             if ($status) {
-                //TODO SUCCESSFUl!
                 $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
-                $this->load_page($data);
+
+                $data['status'] = "Successfully signed up!";
+
+                $a_tag = "<a href=\"%s\"> Click here to login </a>";
+                $link = sprintf($a_tag, base_url() . 'index.php/login');
+                $data['redirect_link'] = $link;
+
+            } else {
+                $data['status'] = "Please try again";
             }
+
+            $this->load_page($data);
         }
     }
 }
