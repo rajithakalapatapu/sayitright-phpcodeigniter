@@ -36,7 +36,7 @@
                 <input type="email" name="subscribe_email" id="footertextarea"
                        placeholder="Enter email address" required></input>
                 <!--            <span id="subscribe_emailErr" class="error"> * -->
-                <?php //echo $subscribe_emailErr; ?><!-- </span>-->
+                <?php echo $status; ?><!-- </span>-->
                 <input type="submit" id="footersubscribe" text="Subscribe">
             </form>
         </div>

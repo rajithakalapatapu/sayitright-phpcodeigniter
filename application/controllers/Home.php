@@ -6,6 +6,7 @@ class Home extends CI_Controller
     public function index()
     {
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
+        $data['status'] = "";
 
         $this->load->helper('form');
         $this->load->helper('url');
@@ -25,7 +26,12 @@ class Home extends CI_Controller
         $this->form_validation->set_rules($config);
 
         if ($this->form_validation->run() == TRUE) {
-            $this->send_email_to_user($this->input->post('subscribe_email'));
+            $sent_successfully = $this->send_email_to_user($this->input->post('subscribe_email'));
+            if ($sent_successfully) {
+                $data['status'] = "Yay! Subscribed!!";
+            } else {
+                $data['status'] = "Try again.";
+            }
         }
         $this->load_page($data);
     }
@@ -38,7 +44,7 @@ class Home extends CI_Controller
         $this->email->subject('SayItRight');
         $this->email->message('Subscribed to SayItRight website');
 
-        $this->email->send();
+        return $this->email->send();
 
     }
 
