@@ -65,6 +65,9 @@
                             ";
 
                             foreach ($cart_items as $product_id => $quantity) {
+                                if (! isset($all_products)) {
+                                    break;
+                                }
                                 $details = $all_products[$product_id - 1];
 
                                 $each_cart_item = "
@@ -120,8 +123,13 @@
                     </div>
                 </div>
             </div>
-            <!--            <p> --><?php //echo $order_status; ?><!-- </p>-->
-
+            <p>
+                <?php
+                if (isset($status)) {
+                    echo $status;
+                }
+                ?>
+            </p>
         </form>
 
     </div>

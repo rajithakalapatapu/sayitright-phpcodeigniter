@@ -115,7 +115,8 @@ class Buyfromus2 extends CI_Controller
 
             if ($status) {
                 // successfully placed order so now map orders and products
-                //TODO SUCCESSFUl!
+                $data['status'] = "Order placed successfully!";
+
                 $order_id = $this->orders_model->get_order_id(
                     $this->input->post('email'),
                     $this->session->total,
@@ -127,11 +128,13 @@ class Buyfromus2 extends CI_Controller
                     $this->orders_model->add_entry_to_order_product($order_id, $product_id, $quantity['quantity']);
                 }
 
-                $this->clear_cart();
+                session_destroy();
+            } else {
+                $data['status'] = "Order not placed - please try again later!";
             }
-        } else {
-            $this->load_page($data);
         }
+
+        $this->load_page($data);
     }
 
     public function clear_cart()
