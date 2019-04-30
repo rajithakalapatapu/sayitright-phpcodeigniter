@@ -25,7 +25,6 @@
                     <textarea rows="4" cols="50" name="Message" placeholder="Enter Message" ></textarea>
                     <span id="MessageErr" class="error"> * <?php echo form_error('Message'); ?>  </span>
                 </div>
-                <!--                <input id="contactus_button" type=""text">-->
                 <button class="contactussend" id="button">SEND MESSAGE</button>
             </div>
         </form>

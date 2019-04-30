@@ -13,6 +13,7 @@ class Contactus extends CI_Controller
     public function index()
     {
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
+        $data['status'] = "";
 
         $this->load->helper('form');
         $this->load->helper('url');
@@ -55,12 +56,7 @@ class Contactus extends CI_Controller
 
         $this->form_validation->set_rules($config);
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('pages/' . strtolower(get_class($this)) . '.php');
-            $this->load->view('templates/footer', $data);
-        } else {
-
+        if ($this->form_validation->run()) {
             $status = $this->contactus_model->store_message(
                 $this->input->post('fname'),
                 $this->input->post('lname'),
@@ -72,12 +68,18 @@ class Contactus extends CI_Controller
                 $data['status'] = 'Message sent successfully!';
             } else {
                 $data['status'] = 'Failed to send message - please try again';
-
             }
-            $this->load->view('templates/header', $data);
-            $this->load->view('pages/' . strtolower(get_class($this)) . '.php', $data);
-            $this->load->view('templates/footer', $data);
         }
+
+        $this->load_page($data);
+
+    }
+
+    private function load_page($data)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/' . strtolower(get_class($this)) . '.php', $data);
+        $this->load->view('templates/footer', $data);
     }
 
 }
