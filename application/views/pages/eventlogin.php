@@ -77,7 +77,7 @@
                 <input type="submit" value="Add event">
             </div>
             <div class="add_event_form_div">
-<!--                <p> --><?php //echo $db_insert_status; ?><!--    </p>-->
+                <p> <?php echo $status; ?>    </p>
             </div>
         </form>
 
