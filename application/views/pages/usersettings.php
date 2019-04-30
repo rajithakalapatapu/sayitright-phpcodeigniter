@@ -40,7 +40,7 @@
             </form>
         </div>
         <div>
-<!--            <p> --><?php //echo $db_insert_status; ?><!-- </p>-->
+            <p> <?php echo $status; ?> </p>
         </div>
 
     </div>

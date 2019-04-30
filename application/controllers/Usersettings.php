@@ -20,6 +20,7 @@ class Usersettings extends CI_Controller
     public function index()
     {
         $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
+        $data['status'] = "";
 
         if (!$this->any_valid_user_logged_in()) {
             $this->go_to_login_page($data);
@@ -38,103 +39,6 @@ class Usersettings extends CI_Controller
             return true;
         }
         return false;
-    }
-
-    public function update()
-    {
-        $config = array(
-            array(
-                'field' => 'fname',
-                'label' => 'First Name',
-                'rules' => 'trim|required|regex_match[/^[A-Za-z ]*$/]',
-                'errors' => array(
-                    'regex_match' => 'You must provide a valid alphabetic name.',
-                ),
-            ),
-            array(
-                'field' => 'lname',
-                'label' => 'Last Name',
-                'rules' => 'trim|regex_match[/^[A-Za-z ]*$/]',
-                'errors' => array(
-                    'regex_match' => 'You must provide a valid alphabetic name.',
-                ),
-            ),
-            array(
-                'field' => 'work',
-                'label' => 'Work',
-                'rules' => 'trim|regex_match[/^[A-Za-z ]*$/]',
-                'errors' => array(
-                    'regex_match' => 'You must provide a valid work location.',
-                ),
-            ),
-            array(
-                'field' => 'school',
-                'label' => 'School',
-                'rules' => 'trim|regex_match[/^[A-Za-z ]*$/]',
-                'errors' => array(
-                    'regex_match' => 'You must provide a valid school.',
-                ),
-            ),
-            array(
-                'field' => 'password',
-                'label' => 'Password',
-                'rules' => 'trim|required',
-                'errors' => array(
-                    'regex_match' => 'You must provide a valid password.',
-                ),
-            ),
-            array(
-                'field' => 'email',
-                'label' => 'Email',
-                'rules' => 'trim|required|valid_email',
-                'errors' => array(
-                    'regex_match' => 'You must provide a valid email.',
-                ),
-            )
-        );
-
-        $this->form_validation->set_rules($config);
-
-        $status = false;
-        if ($this->form_validation->run()) {
-
-            if ($this->session->user_type == "individual") {
-                echo "valid";
-                $status = $this->individual_model->update_individual_details(
-                    $this->input->post('fname'),
-                    $this->input->post('lname'),
-                    $this->input->post('work'),
-                    $this->input->post('school'),
-                    $this->input->post('email'),
-                    $this->input->post('password'),
-                    $this->session->user_id
-                    );
-            } else if ($this->session->user_type == "event") {
-                $status = $this->events_model->update_event_details(
-                    $this->input->post('fname'),
-                    $this->input->post('lname'),
-                    $this->input->post('email'),
-                    $this->input->post('password'),
-                    $this->session->user_id
-                );
-            } else if ($this->session->user_type == "business") {
-                $status = $this->business_model->update_business_details(
-                    $this->input->post('fname'),
-                    $this->input->post('email'),
-                    $this->input->post('password'),
-                    $this->session->user_id
-                );
-            }
-        }
-
-        if ($status) {
-            //TODO successful!
-        }
-
-        $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
-        $this->load_page($data);
-
-
     }
 
     private function go_to_login_page($data)
@@ -200,6 +104,105 @@ class Usersettings extends CI_Controller
     private function get_business_user_details($user_id)
     {
         return $this->business_model->get_details($user_id);
+    }
+
+    public function update()
+    {
+        $config = array(
+            array(
+                'field' => 'fname',
+                'label' => 'First Name',
+                'rules' => 'trim|required|regex_match[/^[A-Za-z ]*$/]',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid alphabetic name.',
+                ),
+            ),
+            array(
+                'field' => 'lname',
+                'label' => 'Last Name',
+                'rules' => 'trim|regex_match[/^[A-Za-z ]*$/]',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid alphabetic name.',
+                ),
+            ),
+            array(
+                'field' => 'work',
+                'label' => 'Work',
+                'rules' => 'trim|regex_match[/^[A-Za-z ]*$/]',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid work location.',
+                ),
+            ),
+            array(
+                'field' => 'school',
+                'label' => 'School',
+                'rules' => 'trim|regex_match[/^[A-Za-z ]*$/]',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid school.',
+                ),
+            ),
+            array(
+                'field' => 'password',
+                'label' => 'Password',
+                'rules' => 'trim|required',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid password.',
+                ),
+            ),
+            array(
+                'field' => 'email',
+                'label' => 'Email',
+                'rules' => 'trim|required|valid_email',
+                'errors' => array(
+                    'regex_match' => 'You must provide a valid email.',
+                ),
+            )
+        );
+
+        $this->form_validation->set_rules($config);
+
+        $status = false;
+        if ($this->form_validation->run()) {
+
+            if ($this->session->user_type == "individual") {
+                $status = $this->individual_model->update_individual_details(
+                    $this->input->post('fname'),
+                    $this->input->post('lname'),
+                    $this->input->post('work'),
+                    $this->input->post('school'),
+                    $this->input->post('email'),
+                    $this->input->post('password'),
+                    $this->session->user_id
+                );
+            } else if ($this->session->user_type == "event") {
+                $status = $this->events_model->update_event_details(
+                    $this->input->post('fname'),
+                    $this->input->post('lname'),
+                    $this->input->post('email'),
+                    $this->input->post('password'),
+                    $this->session->user_id
+                );
+            } else if ($this->session->user_type == "business") {
+                $status = $this->business_model->update_business_details(
+                    $this->input->post('fname'),
+                    $this->input->post('email'),
+                    $this->input->post('password'),
+                    $this->session->user_id
+                );
+            }
+        }
+
+        if ($status) {
+            $data['status'] = 'Updated details successfully!';
+        } else {
+            $data['status'] = 'Failed to update details - please try again';
+        }
+
+        $data['title'] = ucfirst(get_class($this)); // Capitalize the first letter
+
+        $this->load_page($data);
+
+
     }
 
 }
